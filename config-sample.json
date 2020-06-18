@@ -1,4 +1,5 @@
 {
 	"prefix": "your-prefix",
-	"token": "your-token"
+	"token": "your-token",
+	"db": "/database/your-db-here"
 }

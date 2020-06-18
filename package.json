@@ -1,17 +1,19 @@
 {
   "name": "matamunebot",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A bot inspired by our favorite neko from the Shaman King manga.",
   "main": "index.js",
   "dependencies": {
     "discord.js": "^12.2.0",
-    "eslint": "^7.2.0"
+    "eslint": "^7.2.0",
+    "sequelize": "^5.21.13",
+    "sqlite3": "^4.2.0"
   },
   "devDependencies": {},
   "scripts": {
-	"test": "eslint .",
-	"lint": "eslint --fix .",
-	"start": "node ."
+    "test": "eslint .",
+    "lint": "eslint --fix .",
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -22,5 +24,5 @@
   "bugs": {
     "url": "https://github.com/Mathster0598/MatamuneBot/issues"
   },
-  "homepage": "https://github.com/Mathster0598/MatamuneBot#readme"  
+  "homepage": "https://github.com/Mathster0598/MatamuneBot#readme"
 }
