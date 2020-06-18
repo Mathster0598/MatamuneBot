@@ -1,6 +1,6 @@
 {
   "name": "matamunebot",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A bot inspired by our favorite neko from the Shaman King manga.",
   "main": "index.js",
   "dependencies": {
