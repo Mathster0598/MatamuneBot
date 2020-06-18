@@ -6,8 +6,8 @@ A bot inspired by our favorite neko from the Shaman King manga.
 
 ### Tech
 
-* [discord.js] - A powerful node.js module that allows you to interact with the Discord API
-* [node.js]
+* [discord.js](https://discord.js.org/) - A powerful node.js module that allows you to interact with the Discord API.
+* [node.js](https://nodejs.org/) - Is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 
 ### Installation
 
