@@ -30,7 +30,7 @@ $ touch config.json
 {
 	"prefix": "your-prefix",
 	"token": "your-token",
-	"db": "your-db-here"
+	...
 }
 ```
 
