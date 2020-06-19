@@ -23,7 +23,7 @@ $ npm install -d
 Copy and Setup config file
 
 ```sh
-$ mv config.sample.json config.json
+$ cp config.sample.json config.json
 $ touch config.json
 ```
 ```
