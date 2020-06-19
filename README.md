@@ -71,6 +71,11 @@ For multiple databases
 }
 ```
 
+### Start bot
+```sh
+$ npm start
+```
+
 ### Plugins
 
 - TBA
