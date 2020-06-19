@@ -36,6 +36,21 @@ $ touch config.json
 
 To setup bot application and get token, visit [here](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot).
 
+Setup [Discord Embed](https://discordjs.guide/popular-topics/embeds.html) defaults
+```
+{
+...
+	"embed": {
+		"author": {
+			"icon_url": "your-default-icon-here",
+			"url": "your-default-url-here"
+		},
+		"fields": []
+	}
+...
+}
+```
+
 ### Database
 
 The bot utilizes [Sequelize](https://discordjs.guide/sequelize/) with [SQLite](https://www.sqlite.org/) as its ORM. You can create as many databases as you want, but for our purposes, we are utilizing only 1. Create your database.sqlite file on `/database` folder or modify the `/utility/database.js` file to use your prefered database engine.
@@ -67,7 +82,8 @@ Want to contribute? Great!
 
 ### Todos
 
- - TBA
+ - Unravel spaghetti
+ - Add more commands!
 
 License
 ----
