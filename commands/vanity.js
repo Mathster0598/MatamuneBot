@@ -1,4 +1,5 @@
 const Vanity = require('../models/vanity-model.js');
+const { embed } = require('../config.json');
 
 // Sync to Vanity Table
 Vanity.sync();
@@ -18,15 +19,6 @@ module.exports = {
 		const userRole = await message.guild.member(message.author).hasPermission('MANAGE_ROLES');
 		const botRoleMessage = '❌ I do not have the correct permissions.';
 		const userRoleMessage = '❌ You do not have the correct permissions.';
-
-		const embed = {
-			author: {
-				icon_url: 'https://i.imgur.com/yjnDeE8.png',
-				url: 'https://shamanking-project.com/',
-			},
-			fields: [],
-			footer: {},
-		};
 
 		const matched = x => ({
 			on: () => matched(x),
