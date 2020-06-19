@@ -10,7 +10,7 @@ module.exports = {
 	guildOnly: true,
 	aliases: ['vanity'],
 	usage:
-		'vanity <add [role] [color] [emote]> | <remove {user|role [role1] ... [role5]}> | <edit> | <list> | <set>',
+		'<add [role] [color] [emote]> | <remove {user|role [role1] ... [role5]}> | <edit> | <list> | <set>',
 	cooldown: 7,
 	async execute(message, args, commandName) {
 		if (!args.length) return message.channel.send(`⚠️ You didn't provide any arguments, ${message.author}!`).catch(console.log);
