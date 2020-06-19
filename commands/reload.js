@@ -3,6 +3,8 @@ module.exports = {
 	description: 'Reloads a command',
 	args: true,
 	async execute(message, args) {
+		if(!args.length) return message.reply('⚠️ You didn\'t provide any arguments!').catch(console.error);
+		if(args.length > 1) return message.reply('⚠️ Command only accepts 1 argument!').catch(console.error);
 		const commandName = args[0].toLowerCase();
 		const command = await message.client.commands.get(commandName)
 			|| message.client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
