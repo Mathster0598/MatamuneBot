@@ -1,5 +1,5 @@
 const Vanity = require('../models/vanity-model.js');
-const { embed } = require('../config.json');
+const { embed, prefix } = require('../config.json');
 
 // Sync to Vanity Table
 Vanity.sync();
@@ -12,7 +12,7 @@ module.exports = {
 	usage:
 		'vanity <add [role] [color] [emote]> | <remove {user|role [role1] ... [role5]}> | <edit> | <list> | <set>',
 	cooldown: 7,
-	async execute(message, args, prefix, commandName) {
+	async execute(message, args, commandName) {
 		if (!args.length) return message.channel.send(`⚠️ You didn't provide any arguments, ${message.author}!`).catch(console.log);
 		const arg = args[0].toLowerCase();
 		const botRole = await message.member.guild.me.hasPermission('MANAGE_ROLES');
