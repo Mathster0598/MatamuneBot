@@ -55,7 +55,7 @@ client.on('message', async message => {
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
 	try {
-		command.execute(message, args, prefix, commandName);
+		command.execute(message, args, commandName);
 	}
 	catch (error) {
 		console.error(error);
@@ -107,7 +107,7 @@ async function VanityAddRole(reaction, user) {
 
 	if (!vanity) return console.log('Not a vanity role');
 	// Add role
-	await user.presence.member.roles.add(vanity.get('roleID'), 'Assign Vanity Roles').catch(console.log);
+	await user.presence.member.roles.add(vanity.get('roleID'), 'Assign Vanity Role').catch(console.log);
 
 }
 
@@ -125,7 +125,7 @@ async function VanityRemoveRole(reaction, user) {
 
 	if (!vanity) return console.log('Not a vanity role');
 	// Add role
-	await user.presence.member.roles.remove(vanity.get('roleID'), 'Removed Vanity Roles').catch(console.log);
+	await user.presence.member.roles.remove(vanity.get('roleID'), 'Unassign Vanity Role').catch(console.log);
 
 }
 

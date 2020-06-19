@@ -1,5 +1,12 @@
 {
 	"prefix": "your-prefix",
 	"token": "your-token",
-	"db": "your-db-here"
+	"db": "your-db-here",
+	"embed": {
+		"author": {
+			"icon_url": "your-default-icon-here",
+			"url": "your-default-url-here"
+		},
+		"fields": []
+	}
 }
