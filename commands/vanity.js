@@ -5,8 +5,8 @@ const { embed, prefix } = require('../config.json');
 Vanity.sync();
 
 module.exports = {
-	name: 'vanity',
-	description: 'Vanity Role Manager.',
+	name: 'Vanity Role Manager',
+	description: 'Add and Manage Vanity Roles to make your server fancy.',
 	guildOnly: true,
 	aliases: ['vanity'],
 	usage: {
