@@ -1,6 +1,7 @@
 {
 	"prefix": "your-prefix",
 	"token": "your-token",
+	"ownerID": "owner-id-here",
 	"db": "your-db-here",
 	"embed": {
 		"author": {
@@ -8,5 +9,10 @@
 			"url": "your-default-url-here"
 		},
 		"fields": []
-	}
+	},
+	"perms": [
+		"SEND_MESSAGES",
+		"READ_MESSAGE_HISTORY",
+		"VIEW_CHANNEL"
+	]
 }
