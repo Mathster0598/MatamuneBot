@@ -2,7 +2,7 @@
 
 [![N|Solid](https://i.imgur.com/RpLUUV2.jpg)](https://shamanking-project.com/)
 
-<p align="right">
+<p align="left">
 	<a href="https://discord.gg/s4cmWWd">
 		<img src="https://discordapp.com/api/guilds/723781005093240862/widget.png?style=shield" alt="Discord Server">
   	</a>
