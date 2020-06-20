@@ -58,7 +58,7 @@ module.exports = {
 				purpose: purpose,
 			});
 
-			if (trackingResult) console.log('Message tracked!');
+			if (trackingResult) console.log('Message tracked! MessageID: ', messageID);
 
 			return await trackingResult;
 		}
@@ -78,7 +78,7 @@ module.exports = {
 				},
 			});
 
-			if (trackingResult) console.log('Message found!');
+			if (trackingResult) console.log('Message found! MessageID: ', messageID);
 
 			return await trackingResult;
 		}
@@ -98,7 +98,7 @@ module.exports = {
 				},
 			});
 
-			if (trackingResult) console.log('Message Deleted');
+			if (trackingResult) console.log('Message Deleted! MessageID: ', messageID);
 
 			return await trackingResult;
 		}
