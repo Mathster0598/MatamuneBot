@@ -108,7 +108,7 @@ The bot needs atleast the following permissions:
 
 The config has the above permissions as defaults, they're needed to run most commands.
 
-It also important to note that the user issuing the commands has the required permissions. To check for the specific command permission requirements, do `[prefix]help [command] [arg]`.
+It is also important to note that the user issuing the commands has the required permissions. To check for the specific command permission requirements, do `[prefix]help [command] [arg]`.
 
 For more information about discord permissions, visit [here](https://discord.com/developers/docs/topics/permissions).
 
@@ -120,7 +120,7 @@ For more information about discord permissions, visit [here](https://discord.com
 
 ### Development
 
-Want to contribute? Great! Matamune is a open source project, feel free to fork, clone & download! Join the [discord](https://discord.gg/s4cmWWd) for more info!
+Want to contribute? Great! Matamune is an open source project, feel free to fork, clone & download! Join the [discord](https://discord.gg/s4cmWWd) for more info!
 
 ### Todos
 
