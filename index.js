@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
-const Vanity = require('./models/vanity-model.js');
+const Util = require('./utility/utilities.js');
 
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
@@ -75,7 +75,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 			return;
 		}
 	}
-	if (reaction.message.author.id === client.user.id) await VanityAddRole(reaction, user).catch(console.error);
+	if (reaction.message.author.id === client.user.id) await Util.vanityManageRole(reaction, user, 'add');
 });
 
 client.on('messageReactionRemove', async (reaction, user) => {
@@ -90,43 +90,7 @@ client.on('messageReactionRemove', async (reaction, user) => {
 			return;
 		}
 	}
-	if (reaction.message.author.id === client.user.id) await VanityRemoveRole(reaction, user).catch(console.error);
+	if (reaction.message.author.id === client.user.id) await Util.vanityManageRole(reaction, user, 'remove');
 });
-
-async function VanityAddRole(reaction, user) {
-	// Sync to Vanity Table
-	Vanity.sync();
-
-	const condition = {
-		where: {
-			guild: [reaction.message.guild.id],
-			emote: reaction.emoji.name,
-		},
-	};
-	const vanity = await Vanity.findOne(condition).catch(console.error);
-
-	if (!vanity) return console.log('Not a vanity role');
-	// Add role
-	await user.presence.member.roles.add(vanity.get('roleID'), 'Assign Vanity Role').catch(console.log);
-
-}
-
-async function VanityRemoveRole(reaction, user) {
-	// Sync to Vanity Table
-	Vanity.sync();
-
-	const condition = {
-		where: {
-			guild: [reaction.message.guild.id],
-			emote: reaction.emoji.name,
-		},
-	};
-	const vanity = await Vanity.findOne(condition).catch(console.error);
-
-	if (!vanity) return console.log('Not a vanity role');
-	// Add role
-	await user.presence.member.roles.remove(vanity.get('roleID'), 'Unassign Vanity Role').catch(console.log);
-
-}
 
 client.login(token);
