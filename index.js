@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
+const { prefix, token, inviteUrl } = require('./config.json');
 const Util = require('./utility/utilities.js');
 
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
@@ -20,6 +20,10 @@ const cooldowns = new Discord.Collection();
 
 client.once('ready', () => {
 	console.log('Ready!');
+	console.log('Invite url: ', inviteUrl);
+});
+
+client.on('ready', () => {
 	client.user.setActivity('Furyoku Catcher');
 });
 
@@ -76,7 +80,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 		}
 	}
 	const messageCheck = await Util.messageCheck(reaction.message.guild.id, reaction.message.id).catch(console.error);
-	if(messageCheck.get('purpose') === 'Vanity Set Role') {
+	if (messageCheck.get('purpose') === 'Vanity Set Role') {
 		if (reaction.message.author.id === client.user.id) await Util.vanityManageRole(reaction, user, 'add');
 	}
 });
@@ -94,7 +98,7 @@ client.on('messageReactionRemove', async (reaction, user) => {
 		}
 	}
 	const messageCheck = await Util.messageCheck(reaction.message.guild.id, reaction.message.id).catch(console.error);
-	if(messageCheck.get('purpose') === 'Vanity Set Role') {
+	if (messageCheck.get('purpose') === 'Vanity Set Role') {
 		if (reaction.message.author.id === client.user.id) await Util.vanityManageRole(reaction, user, 'remove');
 	}
 });

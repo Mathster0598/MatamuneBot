@@ -2,6 +2,7 @@
 	"prefix": "your-prefix",
 	"token": "your-token",
 	"ownerID": "owner-id-here",
+	"inviteUrl": "your-invite-url",
 	"db": "your-db-here",
 	"embed": {
 		"author": {
