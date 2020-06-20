@@ -1,12 +1,13 @@
 const Vanity = require('../models/vanity-model.js');
-const { embed, prefix } = require('../config.json');
+const { embed, prefix, perms } = require('../config.json');
 const Util = require('../utility/utilities.js');
+const { checkPermission } = require('../utility/utilities.js');
 
 // Sync to Vanity Table
 Vanity.sync();
 
 module.exports = {
-	name: 'Vanity Role Manager',
+	name: 'vanity',
 	description: 'Add and Manage Vanity Roles to make your server fancy.',
 	guildOnly: true,
 	aliases: ['vanity'],
@@ -25,12 +26,12 @@ module.exports = {
 		edit: {
 			description: 'Edit a specific vanity role.',
 			usage: 'edit',
-			permission: 'Manage Roles & Add Reactions',
+			permission: 'Manage Roles, Add Reactions & Send Messages',
 		},
 		list: {
 			description: 'List all server vanity roles.',
 			usage: 'list',
-			permission: 'Send Messages & Add Reactions',
+			permission: 'Add Reactions & Send Messages',
 		},
 		set: {
 			description: 'Send a reaction selection for users to assign their desired vanity role/s.',
@@ -42,15 +43,21 @@ module.exports = {
 	async execute(message, args, commandName) {
 		if (!args.length) return message.channel.send(`⚠️ You didn't provide any arguments, ${message.author}!`).catch(console.log);
 		const arg = args[0].toLowerCase();
-		const botRole = await message.member.guild.me.hasPermission('MANAGE_ROLES');
-		const userRole = await message.guild.member(message.author).hasPermission('MANAGE_ROLES');
-		const botRoleMessage = '❌ I do not have the correct permissions.';
-		const userRoleMessage = '❌ You do not have the correct permissions.';
+		const userPerms = [
+			'MANAGE_ROLES',
+		];
+		const bot = message.member.guild.me;
+		const member = message.guild.member(message.author);
+		const botPermMessage = '❌ I do not have the correct permissions.';
+		const userPermMessage = '❌ You do not have the correct permissions.';
 
 		(await Util.match(arg)).on(a => a === 'add', async () => {
 			if (args.length > 4) return message.reply('⚠️ Command only takes 3 arguments, [role] [color] [emote]').catch(console.error);
-			if (!botRole) return message.reply(botRoleMessage).catch(console.error);
-			if (!userRole) return message.reply(userRoleMessage).catch(console.error);
+
+			const botPerms = perms.concat(['MANAGE_ROLES']);
+			if (!checkPermission(bot, botPerms)) return message.reply(botPermMessage).catch(console.error);
+			if (!checkPermission(member, userPerms)) return message.reply(userPermMessage).catch(console.error);
+
 			const vanity = await Vanity.findAll({ where: { guild: [message.guild.id] } });
 
 			const subArgs = {
@@ -107,8 +114,9 @@ module.exports = {
 			const roleMap = roleNames.map(r => r).join(', ');
 
 			if (args[1] === 'role') {
-				if (!botRole) return message.reply(botRoleMessage).catch(console.error);
-				if (!userRole) return message.reply(userRoleMessage).catch(console.error);
+				const botPerms = perms.concat(['MANAGE_ROLES']);
+				if (!checkPermission(bot, botPerms)) return message.reply(botPermMessage).catch(console.error);
+				if (!checkPermission(member, userPerms)) return message.reply(userPermMessage).catch(console.error);
 
 				const rolePrompt = await message
 					.reply(`Are you sure you want to remove the **${roleMap}** role/s?`)
@@ -184,8 +192,9 @@ module.exports = {
 				return message.reply('⚠️ That\'s not a valid argument! Do **`' + `${prefix + commandName}` + '`** for more info');
 			}
 		}).on(a => a === 'edit', async () => {
-			if (!botRole) return message.reply(botRoleMessage).catch(console.error);
-			if (!userRole) return message.reply(userRoleMessage).catch(console.error);
+			const botPerms = perms.concat(['MANAGE_ROLES', 'ADD_REACTIONS']);
+			if (!checkPermission(bot, botPerms)) return message.reply(botPermMessage).catch(console.error);
+			if (!checkPermission(member, userPerms)) return message.reply(userPermMessage).catch(console.error);
 			if (args.length > 1) return message.reply('⚠️ Command takes no arguments').catch(console.error);
 
 			const vanity = await Vanity.findAll({ where: { guild: [message.guild.id] } });
@@ -309,6 +318,8 @@ module.exports = {
 			return message.channel.send(`👏 <@&${role.id}> was successfully updated!`);
 
 		}).on(a => a === 'list', async () => {
+			const botPerms = perms.concat(['ADD_REACTIONS']);
+			if (!checkPermission(bot, botPerms)) return message.reply(botPermMessage).catch(console.error);
 			if (args.length > 1) return message.reply('❌ Command takes no arguments').catch(console.error);
 			const vanity = await Vanity.findAll({ where: { guild: [message.guild.id] } }).catch(console.error);
 
@@ -328,8 +339,9 @@ module.exports = {
 			return message.channel.send({ embed: embed });
 
 		}).on(a => a === 'set', async () => {
-			if (!botRole) return message.reply(botRoleMessage).catch(console.error);
-			if (!userRole) return message.reply(userRoleMessage).catch(console.error);
+			const botPerms = perms.concat(['MANAGE_ROLES', 'ADD_REACTIONS']);
+			if (!checkPermission(bot, botPerms)) return message.reply(botPermMessage).catch(console.error);
+			if (!checkPermission(member, userPerms)) return message.reply(userPermMessage).catch(console.error);
 			if (args.length > 1) return message.reply('❌ Command takes no arguments').catch(console.error);
 
 			const vanity = await Vanity.findAll({ where: { guild: [message.guild.id] } }).catch(console.error);

@@ -36,6 +36,7 @@ $ touch config.json
 {
 	"prefix": "your-prefix",
 	"token": "your-token",
+	"ownerID": "owner-id-here", //For owner specific commands/functions
 	...
 }
 ```
@@ -77,7 +78,7 @@ For multiple databases
 }
 ```
 
-### Start Bot
+### Start the bot
 ```sh
 $ npm start
 ```
@@ -86,12 +87,12 @@ $ npm start
 
 The bot needs atleast the following permissions:
 - `SEND_MESSAGES` - to send messages to a channel/s.
-- `ADD_REACTIONS` - to add reactions.
 - `VIEW_CHANNEL`  - to view a channel, which includes reading messages in text channels.
 - `READ_MESSAGE_HISTORY` -  to read past messages.
-- `MANAGE_ROLES ` - to manage and edit roles.
 
-It also important to note that the user issuing the commands has the required permissions. To check specific command permission requirements, do `[prefix]help [command] [arg]`.
+The config has the above permissions as defaults, they're needed to run most commands.
+
+It also important to note that the user issuing the commands has the required permissions. To check for the specific command permission requirements, do `[prefix]help [command] [arg]`.
 
 For more information about discord permissions, visit [here](https://discord.com/developers/docs/topics/permissions).
 
