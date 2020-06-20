@@ -88,7 +88,7 @@ $ npm start
 
 To generate an invite url, follow this [guide](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links)
 
-Generating an invite url with the proper scope and permissions should add a role, the bot `App Name`, to the bot upon joining your selected server.
+Generating an invite url with the proper scope and permissions should add a role, the bot `App Name`, to the bot upon joining your selected server. It should look like [this](https://imgur.com/a/1FZjT2D).
 
 Save the invite link in your config file for safe keeping.
 ```
