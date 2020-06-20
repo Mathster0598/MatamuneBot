@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'reload',
 	description: 'Reloads a command',
+	usage: 'reload',
 	args: true,
 	async execute(message, args) {
 		if(!args.length) return message.reply('⚠️ You didn\'t provide any arguments!').catch(console.error);
