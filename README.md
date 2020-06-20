@@ -2,6 +2,12 @@
 
 [![N|Solid](https://i.imgur.com/RpLUUV2.jpg)](https://shamanking-project.com/)
 
+<p align="right">
+	<a href="https://discord.gg/s4cmWWd">
+		<img src="https://discordapp.com/api/guilds/723781005093240862/widget.png?style=shield" alt="Discord Server">
+  	</a>
+</p>
+
 A bot inspired by our favorite neko from the Shaman King manga.
 
 ### Tech
@@ -71,10 +77,24 @@ For multiple databases
 }
 ```
 
-### Start bot
+### Start Bot
 ```sh
 $ npm start
 ```
+
+### Permissions
+
+The bot needs atleast the following permissions:
+- `SEND_MESSAGES` - to send messages to a channel/s.
+- `ADD_REACTIONS` - to add reactions.
+- `VIEW_CHANNEL`  - to view a channel, which includes reading messages in text channels.
+- `READ_MESSAGE_HISTORY` -  to read past messages.
+- `MANAGE_ROLES ` - to manage and edit roles.
+
+It also important to note that the user issuing the commands has the required permissions. To check specific command permission requirements, do `[prefix]help [command] [arg]`.
+
+For more information about discord permissions, visit [here](https://discord.com/developers/docs/topics/permissions).
+
 
 ### Plugins
 
@@ -83,12 +103,14 @@ $ npm start
 
 ### Development
 
-Want to contribute? Great!
+Want to contribute? Great! Matamune is a open source project, feel free to fork, clone & download! Join the [discord](https://discord.gg/s4cmWWd) for more info!
 
 ### Todos
 
- - Unravel spaghetti
+ - Dynamic topic trivia
+ - User profiles & more!
  - Add more commands!
+ - Unravel spaghetti
 
 License
 ----

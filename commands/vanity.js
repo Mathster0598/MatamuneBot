@@ -1,20 +1,42 @@
 const Vanity = require('../models/vanity-model.js');
 const { embed, prefix } = require('../config.json');
+const Util = require('../utility/utilities.js');
 
 // Sync to Vanity Table
 Vanity.sync();
 
 module.exports = {
-	name: 'vanity',
-	description: 'Vanity Role Manager',
+	name: 'Vanity Role Manager',
+	description: 'Add and Manage Vanity Roles to make your server fancy.',
 	guildOnly: true,
 	aliases: ['vanity'],
+	permission: 'View Channel, Manage Roles, Add Reactions & Send Messages',
 	usage: {
-		add: 'add [role] [color] [emote]',
-		remove: 'remove {user|role [role1] ... [role5]}',
-		edit: 'edit',
-		list: 'list',
-		set: 'set',
+		add: {
+			description: 'Add a vanity role and set its color and the emote it should be represented as.',
+			usage: 'add [role] [color] [emote]',
+			permission: 'Manage Roles & Send Messsages',
+		},
+		remove: {
+			description: 'Remove a  vanity role from ther server/user.',
+			usage: 'remove {role|user [role1] ... [role5]}',
+			permission: 'Manage Roles & Send Message(role) | Send Messages(user)',
+		},
+		edit: {
+			description: 'Edit a specific vanity role.',
+			usage: 'edit',
+			permission: 'Manage Roles & Add Reactions',
+		},
+		list: {
+			description: 'List all server vanity roles.',
+			usage: 'list',
+			permission: 'Send Messages & Add Reactions',
+		},
+		set: {
+			description: 'Send a reaction selection for users to assign their desired vanity role/s.',
+			usage: 'set',
+			permission: 'View Channel, Manage Roles, Add Reactions & Send Messages',
+		},
 	},
 	cooldown: 7,
 	async execute(message, args, commandName) {
@@ -25,17 +47,7 @@ module.exports = {
 		const botRoleMessage = '❌ I do not have the correct permissions.';
 		const userRoleMessage = '❌ You do not have the correct permissions.';
 
-		const matched = x => ({
-			on: () => matched(x),
-			otherwise: () => x,
-		});
-
-		const match = x => ({
-			on: (pred, fn) => (pred(x) ? matched(fn(x)) : match(x)),
-			otherwise: fn => fn(x),
-		});
-
-		match(arg).on(a => a === 'add', async () => {
+		(await Util.match(arg)).on(a => a === 'add', async () => {
 			if (args.length > 4) return message.reply('⚠️ Command only takes 3 arguments, [role] [color] [emote]').catch(console.error);
 			if (!botRole) return message.reply(botRoleMessage).catch(console.error);
 			if (!userRole) return message.reply(userRoleMessage).catch(console.error);

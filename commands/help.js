@@ -27,38 +27,53 @@ module.exports = {
 		}
 		const name = args[0].toLowerCase();
 		const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
+		const usageInfo = {};
+
 
 		if (!command) {
 			return message.reply('that\'s not a valid command!');
 		}
-
-		data.push(`**Name:** ${command.name}`);
-
-		if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`);
-		if (command.description) data.push(`**Description:** ${command.description}`);
 		if (command.usage) {
-			const usage = {};
 			const arg = args[1];
 			if (typeof command.usage === 'object') {
 				if (arg && command.usage[arg] === undefined) {
 					return message.reply('⚠️ That\'s not a valid argument!');
 				}
 				else if (arg && command.usage[arg]) {
-					usage.val = command.usage[arg];
+					const options = command.usage[arg];
+					if (typeof options === 'object') {
+						if (options.description) usageInfo.description = options.description;
+						if (options.usage) usageInfo.usage = options.usage;
+						if (options.permission) usageInfo.permission = options.permission;
+					}
+					else {
+						command.usage = options;
+					}
 				}
 				else {
-					usage.val = Object.keys(command.usage);
+					usageInfo.usage = Object.keys(command.usage);
 				}
 			}
-			else {
-				usage.val = command.usage;
-			}
-			data.push(`**Usage:** ${prefix}${command.name} ` +
-				`${Array.isArray(usage.val) ? usage.val.join('|') : usage.val}`);
 		}
+		console.log('usage', usageInfo);
 
-		data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
+		if (command.name) data.push(`**Name:** ${command.name}`);
 
+		if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`);
+		if (command.description) {
+			data.push(`**Description:** ${(usageInfo.description) ? usageInfo.description : command.description}`);
+		}
+		if (command.usage || usageInfo.usage) {
+			data.push(`**Usage:** ${prefix}${command.name} ` +
+				`${(usageInfo.usage) ? !(Array.isArray(usageInfo.usage))
+					? usageInfo.usage : usageInfo.usage.join('|') : command.usage}`);
+		}
+		if (command.permission || usageInfo.permission) {
+			data.push(`**Permission:** ${(command.permission) ? command.permission : usageInfo.permission}`);
+		}
+		if (command.cooldown) data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
+
+		if (!data.length) return message.channel.send('Command creator didn\'t add any information! 🙄');
 		message.channel.send(data, { split: true });
 
 	},
