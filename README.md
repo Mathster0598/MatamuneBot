@@ -79,8 +79,24 @@ For multiple databases
 ```
 
 ### Start the bot
+
 ```sh
 $ npm start
+```
+
+### Invite the bot
+
+To generate an invite url, follow this [guide](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links)
+
+Generating an invite url with the proper scope and permissions should add a role, the bot `App Name`, to the bot upon joining your selected server.
+
+Save the invite link in your config file for safe keeping.
+```
+{
+	...
+	"inviteUrl": "your-invite-url",
+	...
+}
 ```
 
 ### Permissions
