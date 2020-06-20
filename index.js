@@ -75,7 +75,10 @@ client.on('messageReactionAdd', async (reaction, user) => {
 			return;
 		}
 	}
-	if (reaction.message.author.id === client.user.id) await Util.vanityManageRole(reaction, user, 'add');
+	const messageCheck = await Util.messageCheck(reaction.message.guild.id, reaction.message.id).catch(console.error);
+	if(messageCheck.get('purpose') === 'Vanity Set Role') {
+		if (reaction.message.author.id === client.user.id) await Util.vanityManageRole(reaction, user, 'add');
+	}
 });
 
 client.on('messageReactionRemove', async (reaction, user) => {
@@ -90,7 +93,14 @@ client.on('messageReactionRemove', async (reaction, user) => {
 			return;
 		}
 	}
-	if (reaction.message.author.id === client.user.id) await Util.vanityManageRole(reaction, user, 'remove');
+	const messageCheck = await Util.messageCheck(reaction.message.guild.id, reaction.message.id).catch(console.error);
+	if(messageCheck.get('purpose') === 'Vanity Set Role') {
+		if (reaction.message.author.id === client.user.id) await Util.vanityManageRole(reaction, user, 'remove');
+	}
+});
+
+client.on('messageDelete', async message => {
+	await Util.messageRemove(message.guild.id, message.id).catch(console.error);
 });
 
 client.login(token);

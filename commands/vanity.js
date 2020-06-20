@@ -372,6 +372,8 @@ module.exports = {
 
 			const setEmbed = await message.channel.send({ embed: embed }).catch(console.error);
 
+			await Util.messageTracking(message.guild.id, setEmbed.id, 'Vanity Set Role');
+
 			roles.forEach(async e => {
 				await setEmbed.react(e.emote);
 			});

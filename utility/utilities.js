@@ -47,4 +47,63 @@ module.exports = {
 			console.log(error);
 		}
 	},
+	async messageTracking(guild, messageID, purpose) {
+		const tracking = require('../models/message-tracking-model.js');
+		tracking.sync();
+
+		try {
+			const trackingResult = await tracking.create({
+				guild: guild,
+				messageID: messageID,
+				purpose: purpose,
+			});
+
+			if (trackingResult) console.log('Message tracked!');
+
+			return await trackingResult;
+		}
+		catch (error) {
+			console.log(error);
+		}
+	},
+	async messageCheck(guild, messageID) {
+		const tracking = require('../models/message-tracking-model.js');
+		tracking.sync();
+
+		try {
+			const trackingResult = await tracking.findOne({
+				where: {
+					guild: guild,
+					messageID: messageID,
+				},
+			});
+
+			if (trackingResult) console.log('Message found!');
+
+			return await trackingResult;
+		}
+		catch (error) {
+			console.log(error);
+		}
+	},
+	async messageRemove(guild, messageID) {
+		const tracking = require('../models/message-tracking-model.js');
+		tracking.sync();
+
+		try {
+			const trackingResult = await tracking.destroy({
+				where: {
+					guild: guild,
+					messageID: messageID,
+				},
+			});
+
+			if (trackingResult) console.log('Message Deleted');
+
+			return await trackingResult;
+		}
+		catch (error) {
+			console.log(error);
+		}
+	},
 };
