@@ -6,15 +6,35 @@ Vanity.sync();
 
 module.exports = {
 	name: 'vanity',
-	description: 'Vanity Role Manager',
+	description: 'Vanity Role Manager.',
 	guildOnly: true,
 	aliases: ['vanity'],
 	usage: {
-		add: 'add [role] [color] [emote]',
-		remove: 'remove {user|role [role1] ... [role5]}',
-		edit: 'edit',
-		list: 'list',
-		set: 'set',
+		add: {
+			description: 'Add a vanity role and set its color and the emote it should be represented as.',
+			usage: 'add [role] [color] [emote]',
+			permission: 'Manage Roles',
+		},
+		remove: {
+			description: 'Remove a  vanity role from ther server/user.',
+			usage: 'remove {role|user [role1] ... [role5]}',
+			permission: 'Manage Roles(role) | Send Messages(user)',
+		},
+		edit: {
+			description: 'Edit a specific vanity role.',
+			usage: 'edit',
+			permission: 'Manage Roles',
+		},
+		list: {
+			description: 'List all server vanity roles.',
+			usage: 'list',
+			permission: 'Send Messages',
+		},
+		set: {
+			description: 'Send a reaction selection for users to assign their desired vanity role/s.',
+			usage: 'set',
+			permission: 'Manage Roles',
+		},
 	},
 	cooldown: 7,
 	async execute(message, args, commandName) {
