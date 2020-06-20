@@ -39,4 +39,12 @@ module.exports = {
 			console.log(error);
 		}
 	},
+	async checkPermission(member, perms, options = { checkAdmin: true, checkOwner: true }) {
+		try {
+			return await member.hasPermission(perms, options);
+		}
+		catch (error) {
+			console.log(error);
+		}
+	},
 };
