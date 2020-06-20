@@ -21,6 +21,9 @@ const cooldowns = new Discord.Collection();
 client.once('ready', () => {
 	console.log('Ready!');
 	console.log('Invite url: ', inviteUrl);
+});
+
+client.on('ready', () => {
 	client.user.setActivity('Furyoku Catcher');
 });
 
