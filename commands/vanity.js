@@ -50,6 +50,9 @@ module.exports = {
 		const botPermMessage = '❌ I do not have the correct permissions.';
 		const userPermMessage = '❌ You do not have the correct permissions.';
 
+		embed.fields = [];
+		embed.footer = {};
+
 		(await Util.match(arg)).on(a => a === 'add', async () => {
 			if (args.length > 4) return message.reply('⚠️ Command only takes 3 arguments, [role] [color] [emote]').catch(console.error);
 
