@@ -331,14 +331,14 @@ module.exports = {
 			embed.author.name = 'List of all vanity roles';
 			embed.footer.text = `Do <${prefix + commandName} set> to assign roles.`;
 
-			await roles.forEach(e => {
+			roles.forEach(e => {
 				embed.fields.push({
 					name: e.emote + ' - ' + e.name,
 					value: `<@&${e.roleID}>`,
 					inline: true,
 				});
 			});
-			return message.channel.send({ embed: embed });
+			return await message.channel.send({ embed: embed });
 
 		}).on(a => a === 'set', async () => {
 			const botPerms = perms.concat(['MANAGE_ROLES', 'ADD_REACTIONS']);
