@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "discord.js": "^12.2.0",
-    "eslint": "^7.2.0",
+    "eslint": "^7.3.0",
+    "node-fetch": "^2.6.0",
     "sequelize": "^5.21.13",
     "sqlite3": "^4.2.0"
   },
