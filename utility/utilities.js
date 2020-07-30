@@ -30,11 +30,14 @@ module.exports = {
 
 			if (!vanity) return console.log('Not a vanity role');
 			const role = vanity.get('roleID');
+			const guildMember = reaction.message.guild.member(user);
+
+			console.log('Role:', role);
+
 			// Add role
-			console.log('Role: ', role);
-			if (action === 'add') await user.presence.member.roles.add(role, 'Assign Vanity Role');
+			if (action === 'add') await guildMember.roles.add(role, 'Assign Vanity Role');
 			// Remove role
-			else if (action === 'remove') await user.presence.member.roles.remove(role, 'Unassign Vanity Role');
+			else if (action === 'remove') await guildMember.roles.remove(role, 'Unassign Vanity Role');
 			else console.log('Not a valid action');
 		}
 		catch (error) {
