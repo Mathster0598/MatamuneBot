@@ -8,17 +8,17 @@ module.exports = {
 	cooldown: 4,
 	async execute(message, args) {
 
-		// checks if is not more than 1 arguments
+		// check if is more than 1 argument
 		if (args.length > 1) return message.reply('⚠️ Too many arguments, commands only accepts 1!').catch(console.error);
 
 		// checks if is a channel
-		if (!message.mentions.channels.first()) return message.reply('⚠️ Invalid Arguments, must be a valid channel!').catch(console.error);
+		if (!message.mentions.channels.first()) return message.reply('⚠️ Invalid Argument, must be a valid channel!').catch(console.error);
 
 		// instruction prompt
 		const msgPrompt = await message.reply(
 			'Type your message. Type `exit` to stop/cancel.',
 		);
-		// make sure meesages are from author
+		// make sure messages are from author
 		const filter = (m) => message.author.id === m.author.id;
 
 		// async function for message input
