@@ -4,7 +4,7 @@ module.exports = {
 	guildOnly: true,
 	aliases: ['say'],
 	permission: 'View Channel, Manage Roles, Add Reactions & Send Messages',
-	usage: 'say [channel]',
+	usage: '[channel]',
 	cooldown: 4,
 	async execute(message, args) {
 
