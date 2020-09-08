@@ -23,8 +23,39 @@ client.once('ready', () => {
 	console.log('Invite url: ', inviteUrl);
 });
 
+const activities_list = [
+	['PLAYING', [
+		'Furyoku Catcher',
+		'with Ponchi & Conchi',
+		'with Princess Hao',
+		'Ghost Hunter',
+		'Jean Finder',
+		'Oni Collector',
+		'Soul Tracker',
+		'with Tamao\'s heart',
+		'Relaxing Simulator',
+		'Manta Punter',
+	]],
+	['LISTENING', [
+		'Yoh\'s Playlist',
+	]],
+	['STREAMING', [
+		'Shaman Fights',
+		'Yoh VS Hao',
+	]],
+];
+
 client.on('ready', () => {
-	client.user.setActivity('Furyoku Catcher');
+	client.user.setActivity(`${prefix}help`);
+	setInterval(() => {
+		const type = Math.floor(Math.random() * activities_list.length);
+		const activity = Math.floor(Math.random() * activities_list[type][1].length);
+		const options = {};
+		options.type = activities_list[type][0];
+		if(activities_list[type][0] === 'STREAMING') options.url = 'https://www.twitch.tv/mathster_live';
+		client.user.setActivity(
+			activities_list[type][1][activity], options);
+	}, 30000);
 });
 
 client.on('message', async message => {
