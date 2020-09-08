@@ -43,6 +43,10 @@ const activities_list = [
 		'Shaman Fights',
 		'Yoh VS Hao',
 	]],
+	['WATCHING', [
+		'Shaman Fights',
+		'Yoh VS Hao',
+	]],
 ];
 
 client.on('ready', () => {
