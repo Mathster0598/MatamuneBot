@@ -50,6 +50,9 @@ module.exports = {
 		const botPermMessage = '❌ I do not have the correct permissions.';
 		const userPermMessage = '❌ You do not have the correct permissions.';
 
+		embed.fields = [];
+		embed.footer = {};
+
 		(await Util.match(arg)).on(a => a === 'add', async () => {
 			if (args.length > 4) return message.reply('⚠️ Command only takes 3 arguments, [role] [color] [emote]').catch(console.error);
 
@@ -328,14 +331,14 @@ module.exports = {
 			embed.author.name = 'List of all vanity roles';
 			embed.footer.text = `Do <${prefix + commandName} set> to assign roles.`;
 
-			await roles.forEach(e => {
+			roles.forEach(e => {
 				embed.fields.push({
 					name: e.emote + ' - ' + e.name,
 					value: `<@&${e.roleID}>`,
 					inline: true,
 				});
 			});
-			return message.channel.send({ embed: embed });
+			return await message.channel.send({ embed: embed });
 
 		}).on(a => a === 'set', async () => {
 			const botPerms = perms.concat(['MANAGE_ROLES', 'ADD_REACTIONS']);

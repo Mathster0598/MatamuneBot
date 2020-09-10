@@ -9,7 +9,8 @@
 			"icon_url": "your-default-icon-here",
 			"url": "your-default-url-here"
 		},
-		"fields": []
+		"fields": [],
+		"footer": {}
 	},
 	"perms": [
 		"SEND_MESSAGES",
