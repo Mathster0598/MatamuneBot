@@ -4,8 +4,8 @@
   "description": "A bot inspired by our favorite neko from the Shaman King manga.",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^12.2.0",
-    "eslint": "^7.5.0",
+    "discord.js": "^12.3.1",
+    "eslint": "^7.8.1",
     "sequelize": "^5.22.3",
     "sqlite3": "^4.2.0"
   },
