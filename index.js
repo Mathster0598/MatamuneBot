@@ -59,7 +59,7 @@ client.on('ready', () => {
 		if(activities_list[type][0] === 'STREAMING') options.url = 'https://www.twitch.tv/mathster_live';
 		client.user.setActivity(
 			activities_list[type][1][activity], options);
-	}, 30000);
+	}, 300000);
 });
 
 client.on('message', async message => {
